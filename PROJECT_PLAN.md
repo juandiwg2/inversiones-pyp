@@ -132,6 +132,39 @@ Detalle completo en `supabase/migrations/20260710120000_init_schema.sql`.
 - No se envían datos personales a GA4/GTM/Meta Pixel: solo eventos anónimos
   (a implementar en la próxima etapa).
 
+### Rate limiting: alcance y riesgo aceptado
+
+El control de abuso (`api/_lib/rateLimit.ts`) **persiste en Postgres, no en
+memoria del proceso**: en cada envío corre dos `COUNT(*)` reales contra
+`prequalification_requests` (uno por teléfono normalizado, otro por
+`ip_hash`), acotados a los últimos `windowMinutes` (`SECURITY_CONFIG.rateLimit`
+en `src/config/security.ts`). No usa `Map`, variable global ni ningún estado
+en memoria de la función serverless, así que el conteo es correcto sin
+importar qué instancia de Vercel atienda cada request, incluso tras un cold
+start. Los índices compuestos `(phone, created_at)` e `(ip_hash, created_at)`
+que necesitan estas consultas ya están creados en la migración inicial
+(`prequalification_requests_phone_created_at_idx`,
+`prequalification_requests_ip_hash_created_at_idx`); no hizo falta agregar
+ninguno nuevo.
+
+Límites vigentes (no modificar sin decisión explícita): **2 solicitudes por
+teléfono** y **5 por IP** cada **10 minutos**.
+
+Es un patrón *check-then-act*, no atómico: el `SELECT COUNT` y el `INSERT`
+final no corren en la misma transacción, por lo que bajo concurrencia extrema
+(varias requests verdaderamente simultáneas del mismo teléfono/IP) es posible
+que más de una pase el chequeo antes de que cualquiera haya insertado
+todavía, permitiendo colarse por encima del límite nominal. **Se acepta este
+riesgo para la primera etapa**: el volumen esperado es tráfico humano de una
+landing, no un ataque coordinado con requests paralelas exactas, y no
+justifica sumar infraestructura adicional todavía.
+
+Mejora futura si el volumen o el riesgo lo justifican: mover el chequeo y el
+insert a una función RPC transaccional de Postgres (atómica dentro de la
+misma transacción), o reemplazar este mecanismo por un rate limiter externo
+atómico (ej. Upstash Redis con `INCR`/TTL). Ninguna de las dos se implementa
+en esta etapa.
+
 ## Variables de entorno
 
 Ver `.env.example`. Resumen:
