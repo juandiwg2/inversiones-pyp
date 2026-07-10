@@ -20,7 +20,7 @@ export function getSupabaseAdmin(): SupabaseClient<Database> {
   }
 
   cachedClient = createClient<Database>(url, serviceRoleKey, {
-    auth: { persistSession: false, autoRefreshToken: false },
+    auth: { persistSession: false, autoRefreshToken: false, detectSessionInUrl: false },
   })
   return cachedClient
 }

@@ -1,0 +1,22 @@
+-- Otorga a service_role los privilegios de tabla mínimos que necesita el
+-- endpoint api/prequalify.ts sobre prequalification_requests.
+--
+-- Contexto: la migración inicial (20260710120000_init_schema.sql) habilita y
+-- fuerza RLS sin policies para anon/authenticated (deny-by-default), lo cual
+-- sigue intacto. Lo que faltaba era el GRANT de tabla en sí: en Postgres, el
+-- GRANT a nivel de tabla y las policies de RLS son capas independientes —
+-- primero se evalúa el GRANT, recién después las policies. service_role ya
+-- tiene el atributo BYPASSRLS a nivel de rol (así lo configura Supabase),
+-- pero sin el GRANT de tabla no llega ni a esa evaluación.
+--
+-- Principio de mínimo privilegio aplicado:
+--   - Solo SELECT e INSERT (lo único que usa api/prequalify.ts hoy: lee para
+--     rate limiting/idempotencia, e inserta la solicitud).
+--   - Ningún privilegio a anon ni authenticated.
+--   - Ninguna policy de RLS creada, modificada ni eliminada.
+--   - RLS permanece habilitado y forzado.
+--   - Nada de GRANT ALL: si en el futuro se necesita UPDATE/DELETE (por
+--     ejemplo, para el panel administrativo), se agrega en una migración
+--     nueva, explícita para ese caso de uso.
+
+grant select, insert on public.prequalification_requests to service_role;
