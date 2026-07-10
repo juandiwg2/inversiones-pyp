@@ -1,0 +1,24 @@
+/* Reset mínimo. Sin estilos visuales definitivos: se define el sistema de
+   diseño (colores, tipografía, espaciado) en la siguiente etapa. */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
+  color-scheme: light dark;
+}
+
+img,
+picture,
+svg {
+  max-width: 100%;
+  display: block;
+}
