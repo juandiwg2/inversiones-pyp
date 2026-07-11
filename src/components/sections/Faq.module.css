@@ -1,0 +1,9 @@
+.section {
+  padding-block: var(--space-7);
+  background: var(--color-navy-secondary);
+}
+
+.list {
+  max-width: 680px;
+  margin-inline: auto;
+}

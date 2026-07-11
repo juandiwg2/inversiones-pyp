@@ -49,7 +49,7 @@ export const prequalificationFormSchema = z.object({
   email: z
     .union([z.string().trim().toLowerCase().email('Correo inválido'), z.literal('')])
     .optional(),
-  employmentType: z.enum(EMPLOYMENT_TYPE_VALUES),
+  employmentType: z.enum(EMPLOYMENT_TYPE_VALUES, { message: 'Seleccioná una opción' }),
   activityType: z.string().trim().min(2, 'Contanos tu actividad').max(120),
   seniorityMonths: z.coerce
     .number({ message: 'Ingresá la antigüedad en meses' })
@@ -59,7 +59,7 @@ export const prequalificationFormSchema = z.object({
   monthlyIncome: z.coerce
     .number({ message: 'Ingresá el ingreso mensual aproximado' })
     .min(0, 'El ingreso no puede ser negativo'),
-  incomeProofType: z.enum(INCOME_PROOF_TYPE_VALUES),
+  incomeProofType: z.enum(INCOME_PROOF_TYPE_VALUES, { message: 'Seleccioná una opción' }),
   requestedAmount: z.coerce
     .number({ message: 'Ingresá el monto solicitado' })
     .min(
@@ -70,8 +70,8 @@ export const prequalificationFormSchema = z.object({
       BUSINESS_RULES.maxRequestedAmount,
       `El monto máximo es $${BUSINESS_RULES.maxRequestedAmount.toLocaleString('es-AR')}`,
     ),
-  preferredModality: z.enum(MODALITY_VALUES),
-  fundsPurpose: z.enum(FUNDS_PURPOSE_VALUES),
+  preferredModality: z.enum(MODALITY_VALUES, { message: 'Seleccioná una opción' }),
+  fundsPurpose: z.enum(FUNDS_PURPOSE_VALUES, { message: 'Seleccioná una opción' }),
   observations: z.string().trim().max(500, 'Máximo 500 caracteres').optional().or(z.literal('')),
   acceptedTruthfulness: z.literal(true, {
     message: 'Debés declarar que la información es verídica',

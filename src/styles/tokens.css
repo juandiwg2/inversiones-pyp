@@ -1,0 +1,68 @@
+:root {
+  --color-navy-950: #071d3b;
+  --color-navy-secondary: #0d2b4d;
+  --color-navy-800: #12385a;
+
+  --color-petrol-700: #237481;
+  --color-petrol-600: #2b8a98;
+
+  --color-white: #ffffff;
+  --color-surface: #f4f7f8;
+  --color-surface-alt: #edf3f5;
+  --color-border: #d6e0e4;
+  --color-border-on-dark: rgba(255, 255, 255, 0.16);
+
+  --color-text-primary: #102a43;
+  --color-text-secondary: #526776;
+  --color-text-on-dark: #f7fafc;
+  --color-text-muted-on-dark: #cfdbe3;
+
+  /* Estados funcionales — únicos colores fuera de la paleta principal */
+  --color-success-700: #23543c;
+  --color-success-100: #e3efe8;
+  --color-warning-700: #7a5b12;
+  --color-warning-100: #f6eed9;
+  --color-danger-700: #7a3232;
+  --color-danger-100: #f3e5e5;
+  --color-whatsapp: #1d7a5f;
+  --color-whatsapp-hover: #175f4a;
+
+  --font-sans:
+    Inter, ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, sans-serif;
+
+  --weight-body: 400;
+  --weight-medium: 500;
+  --weight-title: 700;
+
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: 2.25rem;
+
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 12px;
+  --radius-full: 999px;
+
+  --shadow-sm: 0 1px 2px rgba(7, 29, 59, 0.05);
+  --shadow-md: 0 2px 8px rgba(7, 29, 59, 0.06);
+
+  --container-max: 1152px;
+
+  --focus-ring: 0 0 0 3px rgba(23, 107, 120, 0.35);
+
+  --transition-fast: 150ms ease;
+}

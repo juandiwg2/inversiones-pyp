@@ -5,18 +5,23 @@
  */
 export const LEGAL_TEXT = {
   privacyPolicy: {
-    /** Fecha de última versión revisada. null mientras el texto sea placeholder. */
+    /** Fecha de última versión revisada por asesoría legal. null mientras no haya revisión formal. */
     updatedAt: null as string | null,
-    body: 'PENDIENTE: texto de Política de Privacidad a redactar y revisar con asesoría legal antes de publicar.',
+    body: 'En Inversiones PyP recolectamos únicamente los datos que nos proporcionás en el formulario de solicitud: nombre completo, fecha de nacimiento, trabajo o actividad y monto solicitado. Estos datos se utilizan exclusivamente para analizar tu solicitud y contactarte por WhatsApp para continuar el proceso. No compartimos tu información con terceros. Podés solicitar la eliminación de tus datos escribiéndonos por los mismos medios de contacto. Este texto es una versión breve, pendiente de revisión final por asesoría legal.',
   },
-  termsAndConditions: {
-    updatedAt: null as string | null,
-    body: 'PENDIENTE: texto de Términos y Condiciones a redactar y revisar con asesoría legal antes de publicar.',
-  },
-  /** Texto exacto del checkbox obligatorio de declaración de veracidad. */
+  /** Texto exacto del checkbox obligatorio de declaración de veracidad (formulario anterior, en desuso). */
   truthfulnessDeclaration:
     'Declaro que la información proporcionada en este formulario es verídica y completa.',
-  /** Texto exacto del checkbox obligatorio de consentimiento de análisis y contacto. */
+  /** Texto exacto del checkbox obligatorio de consentimiento de análisis y contacto (formulario anterior, en desuso). */
   consentStatement:
     'Autorizo a Inversiones PyP a analizar mis datos y a contactarme por los medios indicados para continuar con el proceso de evaluación.',
+  /** Único checkbox obligatorio del formulario breve: combina veracidad + consentimiento. */
+  combinedConsentStatement:
+    'Declaro que la información proporcionada es correcta y autorizo su uso para analizar mi solicitud y contactarme.',
+  /** Aviso breve visible debajo del formulario. */
+  dataUseNotice:
+    'Los datos ingresados se utilizarán únicamente para analizar la solicitud y continuar el contacto por WhatsApp.',
+  /** Aviso legal breve (reemplaza a la página de Términos y Condiciones). */
+  legalNotice:
+    'Enviar una solicitud no implica aprobación. Las condiciones se informan y acuerdan antes de avanzar.',
 } as const

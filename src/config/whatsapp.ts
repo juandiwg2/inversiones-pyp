@@ -1,23 +1,43 @@
 /**
- * Integración con WhatsApp. El mensaje predefinido es el único texto que viaja
- * en la URL: nunca debe incluir nombre, localidad, monto, ingresos u otros
- * datos personales, solo el código público de la solicitud.
+ * Integración con WhatsApp. El mensaje se arma enteramente en el cliente a
+ * partir de los datos del formulario breve: nombre, edad calculada, monto,
+ * trabajo/actividad y modalidad. Nunca incluye la fecha de nacimiento
+ * completa (solo la edad ya calculada) para reducir exposición innecesaria de
+ * datos personales en la URL.
  */
 export const WHATSAPP_CONFIG = {
   /** Número en formato internacional sin signos, ej: 5491122334455. */
   phoneNumber: import.meta.env.VITE_WHATSAPP_PHONE ?? '',
 } as const
 
-export function buildWhatsappMessage(publicCode: string): string {
+export interface WhatsappRequestData {
+  fullName: string
+  age: number
+  requestedAmount: number
+  jobOrActivity: string
+  modalityLabel: string
+}
+
+export function buildWhatsappMessage(data: WhatsappRequestData): string {
   return [
-    'Hola. Ya completé la evaluación inicial en la web de Inversiones PyP y quisiera continuar con el proceso.',
+    'Hola, quiero solicitar una evaluación en Inversiones PyP.',
     '',
-    `Código de solicitud: ${publicCode}`,
+    'DATOS DE LA SOLICITUD',
+    '',
+    `Nombre completo: ${data.fullName}`,
+    `Edad: ${data.age} años`,
+    `Monto solicitado: $${data.requestedAmount.toLocaleString('es-AR')}`,
+    `Trabajo o actividad: ${data.jobOrActivity}`,
+    `Modalidad preferida: ${data.modalityLabel}`,
+    '',
+    'Declaro que la información proporcionada es correcta.',
+    '',
+    'Quedo atento/a para continuar con la evaluación.',
   ].join('\n')
 }
 
-export function buildWhatsappUrl(publicCode: string): string {
+export function buildWhatsappUrl(data: WhatsappRequestData): string {
   const phone = WHATSAPP_CONFIG.phoneNumber.replace(/\D/g, '')
-  const text = encodeURIComponent(buildWhatsappMessage(publicCode))
+  const text = encodeURIComponent(buildWhatsappMessage(data))
   return `https://wa.me/${phone}?text=${text}`
 }

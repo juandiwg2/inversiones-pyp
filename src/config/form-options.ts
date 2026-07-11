@@ -42,24 +42,35 @@ export const INCOME_PROOF_TYPE_OPTIONS: ReadonlyArray<{ value: IncomeProofType; 
   { value: 'no_puede_comprobar', label: 'No puedo comprobar ingresos' },
 ]
 
-export const MODALITY_VALUES = ['prestamo_personal', 'adelanto_efectivo', 'refinanciacion'] as const
+/**
+ * Modalidad = frecuencia de pago. Es el mismo catálogo que se muestra en la
+ * sección "Modalidades" de la landing y se ofrece como campo del formulario:
+ * una sola fuente evita que el marketing y el formulario queden inconsistentes.
+ * Deliberadamente sin montos, cuotas ni tasas (eso se define en la evaluación).
+ */
+export const MODALITY_VALUES = ['diaria', 'semanal', 'quincenal', 'mensual'] as const
 export type Modality = (typeof MODALITY_VALUES)[number]
 
 export const MODALITY_OPTIONS: ReadonlyArray<{ value: Modality; label: string; description: string }> = [
   {
-    value: 'prestamo_personal',
-    label: 'Préstamo personal',
-    description: 'Monto fijo a devolver en cuotas.',
+    value: 'diaria',
+    label: 'Diaria',
+    description: 'Para actividades con ingresos de rotación diaria.',
   },
   {
-    value: 'adelanto_efectivo',
-    label: 'Adelanto en efectivo',
-    description: 'Disponibilidad inmediata de un adelanto sobre ingresos.',
+    value: 'semanal',
+    label: 'Semanal',
+    description: 'Se ajusta a quienes manejan sus ingresos semana a semana.',
   },
   {
-    value: 'refinanciacion',
-    label: 'Refinanciación de deudas',
-    description: 'Consolidar deudas existentes en una sola cuota.',
+    value: 'quincenal',
+    label: 'Quincenal',
+    description: 'Acompaña ciclos de ingreso quincenales.',
+  },
+  {
+    value: 'mensual',
+    label: 'Mensual',
+    description: 'La alternativa más habitual para ingresos mensuales.',
   },
 ]
 

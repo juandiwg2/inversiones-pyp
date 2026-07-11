@@ -1,0 +1,30 @@
+.page {
+  padding-block: var(--space-8);
+  max-width: 760px;
+}
+
+.title {
+  font-size: var(--text-2xl);
+  margin-bottom: var(--space-4);
+}
+
+.pendingNotice {
+  background: var(--color-warning-100);
+  color: var(--color-warning-700);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  margin-bottom: var(--space-6);
+}
+
+.updatedAt {
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  margin-bottom: var(--space-6);
+}
+
+.body {
+  color: var(--color-text-secondary);
+  white-space: pre-line;
+}

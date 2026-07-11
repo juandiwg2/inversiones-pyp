@@ -1,0 +1,49 @@
+.heading,
+.headingCentered {
+  max-width: 640px;
+  margin-bottom: var(--space-6);
+}
+
+.headingCentered {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.eyebrow {
+  font-size: var(--text-xs);
+  font-weight: var(--weight-title);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--color-petrol-700);
+  margin-bottom: var(--space-3);
+}
+
+.title {
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-title);
+  letter-spacing: -0.005em;
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: var(--text-3xl);
+  }
+}
+
+.description {
+  margin-top: var(--space-3);
+  color: var(--color-text-secondary);
+  font-size: var(--text-lg);
+}
+
+.onDark .eyebrow {
+  color: var(--color-text-muted-on-dark);
+}
+
+.onDark .title {
+  color: var(--color-text-on-dark);
+}
+
+.onDark .description {
+  color: var(--color-text-muted-on-dark);
+}
