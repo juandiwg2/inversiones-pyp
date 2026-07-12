@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildWhatsappMessage, buildWhatsappUrl, type WhatsappRequestData } from './whatsapp'
+import { WHATSAPP_CONFIG, buildWhatsappMessage, buildWhatsappUrl, type WhatsappRequestData } from './whatsapp'
 
 const SAMPLE: WhatsappRequestData = {
   fullName: 'Juana Pérez',
@@ -47,5 +47,12 @@ describe('buildWhatsappUrl', () => {
     const decoded = decodeURIComponent(query)
     expect(decoded).toContain('Nombre completo: Juana Pérez')
     expect(decoded).toContain('Monto solicitado: $300.000')
+  })
+
+  it('targets the approved production destination number', () => {
+    expect(WHATSAPP_CONFIG.phoneNumber).toBe('5491127964094')
+    expect(buildWhatsappUrl(SAMPLE)).toBe(
+      `https://wa.me/5491127964094?text=${encodeURIComponent(buildWhatsappMessage(SAMPLE))}`,
+    )
   })
 })
