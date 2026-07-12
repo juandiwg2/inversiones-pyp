@@ -5,6 +5,7 @@ import { WhatsAppIcon } from '../../components/ui/icons'
 import { BUSINESS_RULES } from '../../config/business-rules'
 import { MODALITY_OPTIONS } from '../../config/form-options'
 import { LEGAL_TEXT } from '../../config/legal'
+import { ALLOWED_LOCALITIES, OUT_OF_ZONE_VALUE, type LocalityOption } from '../../config/locations'
 import { buildWhatsappUrl } from '../../config/whatsapp'
 import { trackEvent } from '../../lib/analytics'
 import { captureAndPersistUtm } from '../../lib/utm'
@@ -13,6 +14,13 @@ import { FormField } from './formFields/FormField'
 import { INITIAL_SIMPLIFIED_VALUES, type SimplifiedFieldErrors, type SimplifiedRawValues } from './simplifiedFormValues'
 import { simplifiedRequestSchema } from './simplifiedRequestSchema'
 import styles from './PrequalificationForm.module.css'
+
+const LOCALITY_GROUPS = ALLOWED_LOCALITIES.reduce<Record<string, LocalityOption[]>>((acc, locality) => {
+  const group = acc[locality.partido] ?? []
+  group.push(locality)
+  acc[locality.partido] = group
+  return acc
+}, {})
 
 export function PrequalificationForm() {
   const [values, setValues] = useState<SimplifiedRawValues>(INITIAL_SIMPLIFIED_VALUES)
@@ -50,12 +58,18 @@ export function PrequalificationForm() {
     const modalityLabel =
       MODALITY_OPTIONS.find((option) => option.value === parsed.data.preferredModality)?.label ??
       parsed.data.preferredModality
+    const localityLabel =
+      parsed.data.locality === OUT_OF_ZONE_VALUE
+        ? 'Otra localidad (fuera de zona)'
+        : (ALLOWED_LOCALITIES.find((option) => option.value === parsed.data.locality)?.label ?? parsed.data.locality)
 
     const url = buildWhatsappUrl({
       fullName: parsed.data.fullName,
       age: calculateAge(parsed.data.birthDate),
+      monthlyIncome: parsed.data.monthlyIncome,
+      seniority: parsed.data.seniority,
       requestedAmount: parsed.data.requestedAmount,
-      jobOrActivity: parsed.data.jobOrActivity,
+      locality: localityLabel,
       modalityLabel,
     })
 
@@ -115,6 +129,41 @@ export function PrequalificationForm() {
           )}
         </FormField>
 
+        <FormField id="monthlyIncome" label="Ingresos aproximados" required error={errors.monthlyIncome}>
+          {(describedBy) => (
+            <input
+              id="monthlyIncome"
+              type="number"
+              inputMode="numeric"
+              min={0}
+              className={styles.input}
+              value={values.monthlyIncome}
+              onChange={(e) => updateField('monthlyIncome', e.target.value)}
+              aria-invalid={Boolean(errors.monthlyIncome)}
+              aria-describedby={describedBy}
+            />
+          )}
+        </FormField>
+
+        <FormField
+          id="seniority"
+          label="Antigüedad laboral o comercial"
+          required
+          error={errors.seniority}
+        >
+          {(describedBy) => (
+            <input
+              id="seniority"
+              className={styles.input}
+              value={values.seniority}
+              onChange={(e) => updateField('seniority', e.target.value)}
+              aria-invalid={Boolean(errors.seniority)}
+              aria-describedby={describedBy}
+              placeholder="Ej: 2 años"
+            />
+          )}
+        </FormField>
+
         <FormField
           id="requestedAmount"
           label="Monto a solicitar"
@@ -138,17 +187,28 @@ export function PrequalificationForm() {
           )}
         </FormField>
 
-        <FormField id="jobOrActivity" label="Trabajo o actividad actual" required error={errors.jobOrActivity}>
+        <FormField id="locality" label="Localidad" required error={errors.locality}>
           {(describedBy) => (
-            <input
-              id="jobOrActivity"
-              className={styles.input}
-              value={values.jobOrActivity}
-              onChange={(e) => updateField('jobOrActivity', e.target.value)}
-              aria-invalid={Boolean(errors.jobOrActivity)}
+            <select
+              id="locality"
+              className={styles.select}
+              value={values.locality}
+              onChange={(e) => updateField('locality', e.target.value)}
+              aria-invalid={Boolean(errors.locality)}
               aria-describedby={describedBy}
-              placeholder="Ej: administrativo, comercio, gastronomía"
-            />
+            >
+              <option value="">Seleccioná tu localidad</option>
+              {Object.entries(LOCALITY_GROUPS).map(([partido, localities]) => (
+                <optgroup key={partido} label={partido}>
+                  {localities.map((locality) => (
+                    <option key={locality.value} value={locality.value}>
+                      {locality.label}
+                    </option>
+                  ))}
+                </optgroup>
+              ))}
+              <option value={OUT_OF_ZONE_VALUE}>Otra localidad (fuera de zona)</option>
+            </select>
           )}
         </FormField>
 

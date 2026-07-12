@@ -6,10 +6,11 @@ import styles from './Requirements.module.css'
 
 const REQUIREMENTS = [
   'Ser mayor de 18 años.',
-  'Tener trabajo o actividad.',
+  'Tener actividad comercial.',
+  'Contar con ingresos demostrables.',
   'Solicitar entre $100.000 y $500.000.',
   'Proporcionar información correcta.',
-  'Toda solicitud queda sujeta a evaluación.',
+  'Contar con una cuenta bancaria o billetera virtual para realizar transferencias.',
 ]
 
 export function Requirements() {

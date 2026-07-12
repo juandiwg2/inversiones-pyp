@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { BUSINESS_RULES } from '../../config/business-rules'
 import { MODALITY_VALUES } from '../../config/form-options'
+import { LOCALITY_FORM_VALUES } from '../../config/locations'
 import { calculateAge } from '../../schemas/prequalification.schema'
 
 /**
@@ -24,6 +25,10 @@ export const simplifiedRequestSchema = z.object({
       message: `Debés ser mayor de ${BUSINESS_RULES.minAge} años`,
     })
     .refine((value) => calculateAge(value) < 120, { message: 'Fecha de nacimiento inválida' }),
+  monthlyIncome: z.coerce
+    .number({ message: 'Ingresá tus ingresos aproximados' })
+    .gt(0, 'Los ingresos deben ser mayores a $0'),
+  seniority: z.string().trim().min(1, 'Contanos tu antigüedad laboral o comercial').max(120),
   requestedAmount: z.coerce
     .number({ message: 'Ingresá el monto solicitado' })
     .min(
@@ -34,7 +39,9 @@ export const simplifiedRequestSchema = z.object({
       BUSINESS_RULES.maxRequestedAmount,
       `El monto máximo es $${BUSINESS_RULES.maxRequestedAmount.toLocaleString('es-AR')}`,
     ),
-  jobOrActivity: z.string().trim().min(2, 'Contanos tu trabajo o actividad actual').max(120),
+  locality: z.string().refine((value) => LOCALITY_FORM_VALUES.includes(value), {
+    message: 'Seleccioná una localidad de la lista',
+  }),
   preferredModality: z.enum(MODALITY_VALUES, { message: 'Seleccioná una opción' }),
   acceptedConsent: z.literal(true, {
     message: 'Debés aceptar la declaración para continuar',

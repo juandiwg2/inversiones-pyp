@@ -4,9 +4,11 @@ import { simplifiedRequestSchema } from './simplifiedRequestSchema'
 const VALID = {
   fullName: 'Juana Pérez',
   birthDate: '1990-01-01',
+  monthlyIncome: 450_000,
+  seniority: '2 años',
   requestedAmount: 200_000,
-  jobOrActivity: 'Comercio',
-  preferredModality: 'mensual',
+  locality: 'moron',
+  preferredModality: 'semanal',
   acceptedConsent: true,
 }
 
@@ -34,6 +36,36 @@ describe('simplifiedRequestSchema', () => {
 
     it('rejects a malformed date', () => {
       const result = simplifiedRequestSchema.safeParse({ ...VALID, birthDate: 'not-a-date' })
+      expect(result.success).toBe(false)
+    })
+  })
+
+  describe('monthlyIncome', () => {
+    it('is required', () => {
+      const { monthlyIncome: _omit, ...withoutIncome } = VALID
+      const result = simplifiedRequestSchema.safeParse(withoutIncome)
+      expect(result.success).toBe(false)
+    })
+
+    it('rejects zero', () => {
+      const result = simplifiedRequestSchema.safeParse({ ...VALID, monthlyIncome: 0 })
+      expect(result.success).toBe(false)
+    })
+
+    it('rejects negative values', () => {
+      const result = simplifiedRequestSchema.safeParse({ ...VALID, monthlyIncome: -100 })
+      expect(result.success).toBe(false)
+    })
+
+    it('accepts a positive value', () => {
+      const result = simplifiedRequestSchema.safeParse({ ...VALID, monthlyIncome: 1 })
+      expect(result.success).toBe(true)
+    })
+  })
+
+  describe('seniority', () => {
+    it('is required', () => {
+      const result = simplifiedRequestSchema.safeParse({ ...VALID, seniority: '' })
       expect(result.success).toBe(false)
     })
   })
@@ -67,10 +99,20 @@ describe('simplifiedRequestSchema', () => {
     })
   })
 
-  describe('jobOrActivity', () => {
+  describe('locality', () => {
     it('is required', () => {
-      const result = simplifiedRequestSchema.safeParse({ ...VALID, jobOrActivity: '' })
+      const result = simplifiedRequestSchema.safeParse({ ...VALID, locality: '' })
       expect(result.success).toBe(false)
+    })
+
+    it('rejects a value outside the allowed list', () => {
+      const result = simplifiedRequestSchema.safeParse({ ...VALID, locality: 'no-existe' })
+      expect(result.success).toBe(false)
+    })
+
+    it('accepts the out-of-zone fallback option', () => {
+      const result = simplifiedRequestSchema.safeParse({ ...VALID, locality: 'fuera_de_zona_oeste' })
+      expect(result.success).toBe(true)
     })
   })
 
@@ -80,8 +122,23 @@ describe('simplifiedRequestSchema', () => {
       expect(result.success).toBe(false)
     })
 
-    it('rejects a value outside the allowed list', () => {
-      const result = simplifiedRequestSchema.safeParse({ ...VALID, preferredModality: 'anual' })
+    it('accepts "diaria"', () => {
+      const result = simplifiedRequestSchema.safeParse({ ...VALID, preferredModality: 'diaria' })
+      expect(result.success).toBe(true)
+    })
+
+    it('accepts "semanal"', () => {
+      const result = simplifiedRequestSchema.safeParse({ ...VALID, preferredModality: 'semanal' })
+      expect(result.success).toBe(true)
+    })
+
+    it('rejects "quincenal"', () => {
+      const result = simplifiedRequestSchema.safeParse({ ...VALID, preferredModality: 'quincenal' })
+      expect(result.success).toBe(false)
+    })
+
+    it('rejects "mensual"', () => {
+      const result = simplifiedRequestSchema.safeParse({ ...VALID, preferredModality: 'mensual' })
       expect(result.success).toBe(false)
     })
   })

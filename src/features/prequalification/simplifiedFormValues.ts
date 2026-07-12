@@ -1,8 +1,10 @@
 export interface SimplifiedRawValues {
   fullName: string
   birthDate: string
+  monthlyIncome: string
+  seniority: string
   requestedAmount: string
-  jobOrActivity: string
+  locality: string
   preferredModality: string
   acceptedConsent: boolean
 }
@@ -10,8 +12,10 @@ export interface SimplifiedRawValues {
 export const INITIAL_SIMPLIFIED_VALUES: SimplifiedRawValues = {
   fullName: '',
   birthDate: '',
+  monthlyIncome: '',
+  seniority: '',
   requestedAmount: '',
-  jobOrActivity: '',
+  locality: '',
   preferredModality: '',
   acceptedConsent: false,
 }

@@ -48,7 +48,7 @@ export const INCOME_PROOF_TYPE_OPTIONS: ReadonlyArray<{ value: IncomeProofType; 
  * una sola fuente evita que el marketing y el formulario queden inconsistentes.
  * Deliberadamente sin montos, cuotas ni tasas (eso se define en la evaluación).
  */
-export const MODALITY_VALUES = ['diaria', 'semanal', 'quincenal', 'mensual'] as const
+export const MODALITY_VALUES = ['diaria', 'semanal'] as const
 export type Modality = (typeof MODALITY_VALUES)[number]
 
 export const MODALITY_OPTIONS: ReadonlyArray<{ value: Modality; label: string; description: string }> = [
@@ -61,16 +61,6 @@ export const MODALITY_OPTIONS: ReadonlyArray<{ value: Modality; label: string; d
     value: 'semanal',
     label: 'Semanal',
     description: 'Se ajusta a quienes manejan sus ingresos semana a semana.',
-  },
-  {
-    value: 'quincenal',
-    label: 'Quincenal',
-    description: 'Acompaña ciclos de ingreso quincenales.',
-  },
-  {
-    value: 'mensual',
-    label: 'Mensual',
-    description: 'La alternativa más habitual para ingresos mensuales.',
   },
 ]
 

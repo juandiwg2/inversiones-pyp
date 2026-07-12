@@ -13,10 +13,10 @@ export function Hero() {
           <h1 className={styles.title}>
             Financiación para
             <br />
-            personas y <em className={styles.accent}>negocios</em>
+            comerciantes y <em className={styles.accent}>negocios</em>
           </h1>
           <p className={styles.subtitle}>
-            Completá una solicitud breve y continuá por WhatsApp para que evaluemos tu caso.
+            Completá una solicitud breve y continuá por WhatsApp para que evaluemos tu actividad comercial.
           </p>
           <div className={styles.ctaRow}>
             <LinkButton href={`#${SECTION_IDS.form}`} variant="primary">

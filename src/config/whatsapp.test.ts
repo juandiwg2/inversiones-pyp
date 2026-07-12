@@ -4,9 +4,11 @@ import { WHATSAPP_CONFIG, buildWhatsappMessage, buildWhatsappUrl, type WhatsappR
 const SAMPLE: WhatsappRequestData = {
   fullName: 'Juana Pérez',
   age: 34,
+  monthlyIncome: 450000,
+  seniority: '2 años',
   requestedAmount: 300000,
-  jobOrActivity: 'Comercio',
-  modalityLabel: 'Mensual',
+  locality: 'Morón',
+  modalityLabel: 'Semanal',
 }
 
 describe('buildWhatsappMessage', () => {
@@ -20,9 +22,11 @@ describe('buildWhatsappMessage', () => {
         '',
         'Nombre completo: Juana Pérez',
         'Edad: 34 años',
+        'Ingresos aproximados: $450.000',
+        'Antigüedad laboral/comercial: 2 años',
         'Monto solicitado: $300.000',
-        'Trabajo o actividad: Comercio',
-        'Modalidad preferida: Mensual',
+        'Localidad: Morón',
+        'Modalidad preferida: Semanal',
         '',
         'Declaro que la información proporcionada es correcta.',
         '',
@@ -35,6 +39,12 @@ describe('buildWhatsappMessage', () => {
     const message = buildWhatsappMessage(SAMPLE)
     expect(message).not.toMatch(/\d{4}-\d{2}-\d{2}/)
     expect(message).toContain('Edad: 34 años')
+  })
+
+  it('never includes fields outside the agreed data set', () => {
+    const message = buildWhatsappMessage(SAMPLE)
+    const lines = message.split('\n').filter((line) => line.includes(':'))
+    expect(lines).toHaveLength(7)
   })
 })
 
