@@ -1,5 +1,6 @@
 import { Container } from '../components/ui/Container'
 import { SectionHeading } from '../components/ui/SectionHeading'
+import { Enfoque } from '../components/sections/Enfoque'
 import { Faq } from '../components/sections/Faq'
 import { Hero } from '../components/sections/Hero'
 import { HowItWorks } from '../components/sections/HowItWorks'
@@ -14,6 +15,7 @@ export function HomePage() {
     <>
       <Hero />
       <TrustSignals />
+      <Enfoque />
       <HowItWorks />
       <Requirements />
       <section id={SECTION_IDS.form} className={styles.formSection}>

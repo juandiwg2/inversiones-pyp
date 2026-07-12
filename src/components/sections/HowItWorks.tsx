@@ -6,9 +6,10 @@ import styles from './HowItWorks.module.css'
 
 const STEPS = [
   'Completás la solicitud.',
-  'Se guarda la información.',
+  'Guardamos la información.',
   'Continuás por WhatsApp.',
-  'Revisamos el caso y te contactamos.',
+  'Revisamos el caso.',
+  'Te informamos si es posible avanzar.',
 ]
 
 /**
@@ -62,7 +63,6 @@ export function HowItWorks() {
                 <div className={styles.marker}>
                   <span className={styles.dot}>
                     <span className={styles.dotFill} />
-                    <span className={styles.dotLabel}>{index + 1}</span>
                   </span>
                   {index < STEPS.length - 1 ? (
                     <span className={styles.line}>
@@ -70,7 +70,10 @@ export function HowItWorks() {
                     </span>
                   ) : null}
                 </div>
-                <p className={styles.stepText}>{step}</p>
+                <div className={styles.content}>
+                  <span className={styles.stepLabel}>Paso {String(index + 1).padStart(2, '0')}</span>
+                  <p className={styles.stepText}>{step}</p>
+                </div>
               </li>
             )
           })}

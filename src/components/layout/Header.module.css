@@ -2,8 +2,8 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  background: var(--color-white);
-  border-bottom: 1px solid var(--color-border);
+  background: #071d3b;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 
 .inner {
@@ -11,7 +11,7 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-4);
-  min-height: 68px;
+  min-height: 64px;
 }
 
 .brandLink {
@@ -26,14 +26,18 @@
 }
 
 .navLink {
-  color: var(--color-text-secondary);
-  font-size: var(--text-sm);
+  font-family: var(--font-mono);
+  color: var(--color-text-muted-on-dark);
+  font-size: 0.75rem;
   font-weight: var(--weight-medium);
+  text-transform: uppercase;
+  letter-spacing: 0.14em;
   text-decoration: none;
+  transition: color var(--transition-fast);
 }
 
 .navLink:hover {
-  color: var(--color-text-primary);
+  color: var(--color-white);
 }
 
 .cta {
@@ -42,6 +46,15 @@
   min-height: 36px;
   flex-shrink: 0;
   white-space: nowrap;
+}
+
+.cta.cta {
+  background: #2b8a98;
+  color: var(--color-white);
+}
+
+.cta.cta:hover:not(:disabled) {
+  background: #237481;
 }
 
 @media (min-width: 480px) {
@@ -56,6 +69,7 @@
   .inner {
     display: grid;
     grid-template-columns: auto 1fr auto;
+    min-height: 70px;
   }
 
   .nav {

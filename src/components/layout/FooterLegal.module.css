@@ -1,43 +1,73 @@
 .footer {
-  border-top: 1px solid var(--color-border-on-dark);
-  background: var(--color-navy-950);
-  padding-block: var(--space-6);
-}
-
-.inner {
   display: flex;
   flex-direction: column;
-  gap: var(--space-4);
-}
-
-.disclaimer {
-  margin-top: var(--space-2);
-  color: var(--color-text-muted-on-dark);
-  font-size: var(--text-sm);
-  max-width: 60ch;
-}
-
-.links {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-4);
-  font-size: var(--text-sm);
-}
-
-.links a {
-  color: var(--color-text-muted-on-dark);
-  text-decoration: underline;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  text-align: center;
+  background: #071d3b;
+  border-top: 1px solid rgba(255, 255, 255, 0.14);
+  padding-block: 0.75rem;
+  padding-inline: var(--space-4);
 }
 
 .copy {
-  font-size: var(--text-xs);
-  color: var(--color-text-muted-on-dark);
+  margin: 0;
+  font-size: 13px;
+  font-weight: 400;
+  color: #cfdbe3;
 }
 
-@media (min-width: 768px) {
-  .inner {
-    flex-direction: row;
-    align-items: flex-start;
-    justify-content: space-between;
+.poweredBy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin: 0;
+  font-size: 11px;
+  font-weight: var(--weight-body);
+  color: #cfdbe3;
+}
+
+.poweredByLink {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: transform 160ms ease-out, opacity 160ms ease-out;
+}
+
+.poweredByLink:hover {
+  opacity: 0.85;
+}
+
+.poweredByLink:focus-visible {
+  outline: 2px solid #2b8a98;
+  outline-offset: 4px;
+  border-radius: 4px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .poweredByLink {
+    transition: none;
+  }
+}
+
+/*
+ * jota-logic.png es un lienzo cuadrado (1080x1080): sin recorte ni cover,
+ * width fijo + height:auto reproduce la imagen completa y proporcional,
+ * "LOGIC" incluido. No fijar height ni overflow:hidden acá.
+ */
+.poweredByLogo {
+  display: block;
+  width: 92px;
+  height: auto;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
+@media (max-width: 767px) {
+  .poweredByLogo {
+    width: 82px;
   }
 }
