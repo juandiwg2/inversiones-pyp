@@ -1,6 +1,6 @@
 .section {
   padding-block: var(--space-7);
-  background: var(--color-navy-secondary);
+  background: var(--color-surface);
 }
 
 .timeline {
@@ -34,7 +34,8 @@
   width: 40px;
   height: 40px;
   border-radius: var(--radius-full);
-  border: 1px solid var(--color-border-on-dark);
+  border: 1px solid var(--color-border);
+  background: var(--color-white);
   flex-shrink: 0;
   overflow: hidden;
 }
@@ -56,7 +57,7 @@
   height: 100%;
   font-weight: var(--weight-title);
   font-size: var(--text-lg);
-  color: var(--color-text-on-dark);
+  color: var(--color-text-primary);
 }
 
 .line {
@@ -65,7 +66,7 @@
   flex: 1;
   min-height: 40px;
   margin-top: var(--space-2);
-  background: var(--color-border-on-dark);
+  background: var(--color-border);
   overflow: hidden;
 }
 
@@ -81,7 +82,7 @@
   padding-top: var(--space-2);
   font-size: var(--text-base);
   font-weight: var(--weight-medium);
-  color: var(--color-text-on-dark);
+  color: var(--color-text-primary);
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -101,4 +102,8 @@
 .stepActive {
   opacity: 1;
   transform: translateY(0);
+}
+
+.stepActive .dotLabel {
+  color: var(--color-white);
 }

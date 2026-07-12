@@ -15,7 +15,7 @@ export function Header() {
     <header className={styles.header}>
       <Container className={styles.inner}>
         <a href="#top" className={styles.brandLink} aria-label="Inversiones PyP, ir al inicio">
-          <LogoHorizontal />
+          <LogoHorizontal chip />
         </a>
         <nav className={styles.nav} aria-label="Secciones de la página">
           {NAV_LINKS.map((link) => (

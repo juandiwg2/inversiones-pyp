@@ -1,22 +1,24 @@
 import { SECTION_IDS } from '../../lib/sectionIds'
 import { Container } from '../ui/Container'
 import { SectionHeading } from '../ui/SectionHeading'
-import { CheckCircleIcon, InfoIcon } from '../ui/icons'
+import { CheckCircleIcon } from '../ui/icons'
 import styles from './Requirements.module.css'
 
 const REQUIREMENTS = [
   'Ser mayor de 18 años.',
-  'Tener una actividad laboral o comercial.',
-  'Contar con capacidad para afrontar los pagos.',
+  'Tener trabajo o actividad.',
+  'Solicitar entre $100.000 y $500.000.',
   'Proporcionar información correcta.',
-  'Toda solicitud queda sujeta a revisión manual.',
+  'Toda solicitud queda sujeta a evaluación.',
 ]
 
 export function Requirements() {
   return (
     <section id={SECTION_IDS.requirements} className={styles.section}>
-      <Container>
-        <SectionHeading eyebrow="Antes de solicitar" title="Requisitos" />
+      <Container className={styles.inner}>
+        <div className={styles.heading}>
+          <SectionHeading eyebrow="Antes de solicitar" title="Requisitos" align="left" tone="onDark" />
+        </div>
         <ul className={styles.list}>
           {REQUIREMENTS.map((item) => (
             <li key={item} className={styles.item}>
@@ -25,10 +27,6 @@ export function Requirements() {
             </li>
           ))}
         </ul>
-        <div className={styles.note}>
-          <InfoIcon className={styles.noteIcon} />
-          <p>Cumplir estos puntos no garantiza la aceptación de la solicitud: cada caso queda sujeto a revisión manual.</p>
-        </div>
       </Container>
     </section>
   )

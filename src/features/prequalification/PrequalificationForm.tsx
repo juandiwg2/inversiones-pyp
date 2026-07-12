@@ -1,7 +1,7 @@
 import { useEffect, useState, type FormEvent } from 'react'
 import { Link } from 'react-router-dom'
 import { Button, LinkButton } from '../../components/ui/Button'
-import { ShieldIcon, WhatsAppIcon } from '../../components/ui/icons'
+import { WhatsAppIcon } from '../../components/ui/icons'
 import { BUSINESS_RULES } from '../../config/business-rules'
 import { MODALITY_OPTIONS } from '../../config/form-options'
 import { LEGAL_TEXT } from '../../config/legal'
@@ -69,10 +69,7 @@ export function PrequalificationForm() {
       <div className={styles.readyPanel}>
         <WhatsAppIcon className={styles.readyIcon} />
         <h3 className={styles.readyTitle}>Te estamos llevando a WhatsApp</h3>
-        <p className={styles.readyBody}>
-          Si no se abrió automáticamente, continuá la conversación desde este botón. Nuestro equipo revisa cada
-          solicitud manualmente y te va a comunicar si es posible avanzar.
-        </p>
+        <p className={styles.readyBody}>Si no se abrió automáticamente, continuá la conversación desde este botón.</p>
         <LinkButton
           href={whatsappUrl}
           variant="whatsapp"
@@ -202,21 +199,16 @@ export function PrequalificationForm() {
       </div>
 
       <div className={styles.formFooter}>
-        <p className={styles.privacyNote}>
-          <ShieldIcon className={styles.privacyIcon} />
-          <span>
-            {LEGAL_TEXT.dataUseNotice} Ver{' '}
-            <Link to="/politica-de-privacidad" className={styles.privacyLink}>
-              Política de Privacidad
-            </Link>
-            .
-          </span>
-        </p>
-
         <Button type="submit" variant="primary" fullWidthOnMobile icon={<WhatsAppIcon />}>
           Solicitar evaluación
         </Button>
-        <p className={styles.disclaimer}>Enviar una solicitud no implica aprobación ni genera ningún compromiso.</p>
+        <p className={styles.disclaimer}>
+          {LEGAL_TEXT.dataUseNotice}{' '}
+          <Link to="/politica-de-privacidad" className={styles.privacyLink}>
+            Política de Privacidad
+          </Link>
+          .
+        </p>
       </div>
     </form>
   )

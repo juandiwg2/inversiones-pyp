@@ -5,11 +5,11 @@ import { Container } from '../ui/Container'
 import { CheckCircleIcon } from '../ui/icons'
 import styles from './Hero.module.css'
 
-const KEY_FACTS = [
-  'Más de cinco años de experiencia.',
-  'Evaluación personalizada.',
-  'Atención directa.',
-  'Condiciones informadas antes de avanzar.',
+const HIGHLIGHTS = [
+  'Más de 5 años de experiencia.',
+  'Montos de $100.000 a $500.000.',
+  'Atención en Zona Oeste.',
+  'Evaluación manual.',
 ]
 
 export function Hero() {
@@ -18,16 +18,15 @@ export function Hero() {
       <Container className={styles.inner}>
         <div className={styles.copy}>
           <p className={styles.eyebrow}>Financiación responsable</p>
-          <h1 className={styles.title}>Soluciones de financiación evaluadas de forma personalizada</h1>
+          <h1 className={styles.title}>Financiación para personas y negocios</h1>
           <p className={styles.subtitle}>
-            Evaluamos cada solicitud de manera individual para ofrecer una atención clara, directa y adaptada a cada
-            situación.
+            Completá una solicitud breve y continuá por WhatsApp para que evaluemos tu caso.
           </p>
           <ul className={styles.facts}>
-            {KEY_FACTS.map((fact) => (
-              <li key={fact} className={styles.factItem}>
+            {HIGHLIGHTS.map((item) => (
+              <li key={item} className={styles.factItem}>
                 <CheckCircleIcon className={styles.factIcon} />
-                <span>{fact}</span>
+                <span>{item}</span>
               </li>
             ))}
           </ul>
@@ -35,15 +34,12 @@ export function Hero() {
             <LinkButton href={`#${SECTION_IDS.form}`} variant="primary" fullWidthOnMobile>
               Solicitar evaluación
             </LinkButton>
-            <p className={styles.disclaimer}>
-              Enviar una solicitud no implica aprobación ni genera ningún compromiso.
-            </p>
+            <p className={styles.disclaimer}>Enviar una solicitud no implica aprobación.</p>
           </div>
         </div>
-        <aside className={styles.sidebar} aria-hidden="true">
-          <LogoMark className={styles.sidebarMark} />
-          <p className={styles.sidebarCaption}>Cada caso se analiza de forma individual.</p>
-        </aside>
+        <div className={styles.visual} aria-hidden="true">
+          <LogoMark className={styles.mark} />
+        </div>
       </Container>
     </section>
   )

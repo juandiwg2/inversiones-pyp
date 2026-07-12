@@ -5,11 +5,10 @@ import { SectionHeading } from '../ui/SectionHeading'
 import styles from './HowItWorks.module.css'
 
 const STEPS = [
-  'Completás tus datos.',
-  'Se prepara tu solicitud.',
+  'Completás la solicitud.',
+  'Se guarda la información.',
   'Continuás por WhatsApp.',
-  'Revisamos la información.',
-  'Te comunicamos si es posible avanzar.',
+  'Revisamos el caso y te contactamos.',
 ]
 
 /**
@@ -45,7 +44,7 @@ export function HowItWorks() {
   return (
     <section id={SECTION_IDS.howItWorks} className={styles.section}>
       <Container>
-        <SectionHeading eyebrow="Proceso" title="Cómo funciona" tone="onDark" />
+        <SectionHeading eyebrow="Proceso" title="Cómo funciona" />
         <ol className={styles.timeline}>
           {STEPS.map((step, index) => {
             const isActive = index < activeCount

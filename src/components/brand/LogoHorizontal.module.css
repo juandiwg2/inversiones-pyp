@@ -18,6 +18,23 @@
   flex-shrink: 0;
 }
 
+.chip {
+  background: var(--color-navy-950);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  overflow: hidden;
+  width: 40px;
+  height: 40px;
+}
+
+.chipMark {
+  width: 30px;
+  height: 30px;
+  object-fit: contain;
+}
+
 .name {
   font-family: var(--font-sans);
   font-weight: var(--weight-title);
@@ -31,6 +48,16 @@
   .mark {
     height: 42px;
     max-width: 110px;
+  }
+
+  .chip {
+    width: 36px;
+    height: 36px;
+  }
+
+  .chipMark {
+    width: 26px;
+    height: 26px;
   }
 
   .name {
