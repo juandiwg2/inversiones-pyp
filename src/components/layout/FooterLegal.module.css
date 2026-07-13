@@ -22,7 +22,7 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 10px;
+  gap: 8px;
   margin: 0;
   font-size: 11px;
   font-weight: var(--weight-body);
@@ -60,7 +60,7 @@
  */
 .poweredByLogo {
   display: block;
-  width: 92px;
+  width: 63px;
   height: auto;
   object-fit: contain;
   flex-shrink: 0;
@@ -68,6 +68,6 @@
 
 @media (max-width: 767px) {
   .poweredByLogo {
-    width: 82px;
+    width: 56px;
   }
 }

@@ -19,7 +19,7 @@ export const LEGAL_TEXT = {
   combinedConsentStatement:
     'Declaro que la información proporcionada es correcta y autorizo su uso para analizar mi solicitud y contactarme.',
   /** Aviso breve visible debajo del formulario. */
-  dataUseNotice: 'Los datos se utilizan únicamente para analizar la solicitud y continuar el contacto por WhatsApp.',
+  dataUseNotice: 'Los datos se utilizan únicamente para analizar la solicitud y continuar el contacto.',
   /** Aviso legal breve del footer (reemplaza a la página de Términos y Condiciones). */
   legalNotice: 'Enviar una solicitud no implica aprobación.',
 } as const

@@ -1,19 +1,19 @@
 .form {
   display: flex;
   flex-direction: column;
-  gap: var(--space-5);
-  max-width: 680px;
+  gap: var(--space-6);
+  max-width: 720px;
   margin-inline: auto;
   background: var(--color-white);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-sm);
+  box-shadow: var(--shadow-md);
   padding: var(--space-6);
 }
 
 @media (min-width: 768px) {
   .form {
-    padding: var(--space-7);
+    padding: var(--space-8);
   }
 }
 
@@ -31,8 +31,8 @@
 .input,
 .select {
   width: 100%;
-  min-height: 48px;
-  padding: 0.7rem var(--space-3);
+  min-height: 52px;
+  padding: 0.75rem var(--space-4);
   border-radius: var(--radius-sm);
   border: 1px solid var(--color-border);
   background: var(--color-white);
@@ -109,7 +109,7 @@
   align-items: center;
   text-align: center;
   gap: var(--space-3);
-  max-width: 680px;
+  max-width: 720px;
   margin-inline: auto;
   background: var(--color-white);
   border: 1px solid var(--color-border);

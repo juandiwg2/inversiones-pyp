@@ -2,7 +2,7 @@
   position: sticky;
   top: 0;
   z-index: 40;
-  background: #071d3b;
+  background: var(--color-navy-950);
   border-bottom: 1px solid rgba(255, 255, 255, 0.14);
 }
 
@@ -49,12 +49,12 @@
 }
 
 .cta.cta {
-  background: #2b8a98;
+  background: var(--color-petrol-600);
   color: var(--color-white);
 }
 
 .cta.cta:hover:not(:disabled) {
-  background: #237481;
+  background: var(--color-petrol-700);
 }
 
 @media (min-width: 480px) {
@@ -69,11 +69,22 @@
   .inner {
     display: grid;
     grid-template-columns: auto 1fr auto;
-    min-height: 70px;
+    min-height: 72px;
   }
 
   .nav {
     display: flex;
     justify-content: center;
+    gap: var(--space-7);
+  }
+
+  .cta {
+    padding: 0.7rem 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .inner.inner {
+    padding-inline: var(--space-7);
   }
 }

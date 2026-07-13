@@ -1,6 +1,6 @@
 .section {
   padding-block: var(--space-8);
-  background: var(--color-white);
+  background: var(--color-navy-secondary);
 }
 
 .timeline {
@@ -35,7 +35,7 @@
   width: 8px;
   height: 8px;
   flex-shrink: 0;
-  background: var(--color-border);
+  background: var(--color-border-on-dark);
 }
 
 .dotFill {
@@ -51,7 +51,7 @@
   flex: 1;
   min-height: 36px;
   margin-top: var(--space-3);
-  background: var(--color-border);
+  background: var(--color-border-on-dark);
   overflow: hidden;
 }
 
@@ -74,14 +74,14 @@
   font-weight: var(--weight-medium);
   text-transform: uppercase;
   letter-spacing: 0.16em;
-  color: var(--color-petrol-700);
+  color: var(--color-text-muted-on-dark);
 }
 
 .stepText {
   margin-top: var(--space-1);
   font-size: var(--text-lg);
   font-weight: var(--weight-medium);
-  color: var(--color-text-primary);
+  color: var(--color-text-on-dark);
 }
 
 @media (prefers-reduced-motion: no-preference) {

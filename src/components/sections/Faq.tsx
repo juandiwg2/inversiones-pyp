@@ -8,11 +8,6 @@ import styles from './Faq.module.css'
 
 const FAQ_ITEMS = [
   {
-    question: '¿Quiénes pueden solicitar?',
-    answer:
-      'Comerciantes, emprendedores y trabajadores independientes mayores de 18 años, con actividad comercial y capacidad de pago.',
-  },
-  {
     question: '¿Qué ingresos necesito demostrar?',
     answer: 'Ingresos que respalden tu actividad comercial. Se evalúan según la información que nos compartas.',
   },

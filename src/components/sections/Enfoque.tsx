@@ -8,14 +8,14 @@ export function Enfoque() {
       <Container className={styles.inner}>
         <div className={styles.heading}>
           <p className={styles.eyebrow}>Enfoque</p>
-          <h2 className={styles.title}>Cada solicitud se analiza de forma individual</h2>
+          <h2 className={styles.title}>Nuestro enfoque</h2>
           <div className={styles.rule} />
         </div>
         <div className={styles.body}>
-          <p className={styles.quote}>Cada caso se revisa según su propia situación.</p>
+          <p className={styles.quote}>En Inversiones PyP analizamos cada solicitud de manera individual.</p>
           <p className={styles.paragraph}>
-            En Inversiones PyP revisamos cada caso según la información proporcionada y la capacidad de pago. No
-            trabajamos con aprobaciones automáticas ni condiciones iguales para todos.
+            Buscamos comprender la realidad de cada comercio antes de avanzar con cualquier propuesta. Nuestro
+            objetivo es ofrecer un proceso claro, directo y sin vueltas innecesarias.
           </p>
         </div>
       </Container>

@@ -4,35 +4,49 @@ import { LinkButton } from '../ui/Button'
 import { Container } from '../ui/Container'
 import styles from './Hero.module.css'
 
+const TRUST_ITEMS = [
+  'Más de 5 años de experiencia.',
+  'Atención personalizada.',
+  'Respuesta por WhatsApp.',
+  'Transferencias bancarias.',
+]
+
 export function Hero() {
   return (
     <section className={styles.hero}>
-      <Container className={styles.inner}>
-        <div className={styles.copy}>
-          <p className={styles.eyebrow}>Financiación responsable</p>
-          <h1 className={styles.title}>
-            Financiación para
-            <br />
-            comerciantes y <em className={styles.accent}>negocios</em>
-          </h1>
-          <p className={styles.subtitle}>
-            Completá una solicitud breve y continuá por WhatsApp para que evaluemos tu actividad comercial.
-          </p>
-          <div className={styles.ctaRow}>
-            <LinkButton href={`#${SECTION_IDS.form}`} variant="primary">
-              Solicitar evaluación
-              <span className={styles.ctaArrow} aria-hidden="true">
-                →
-              </span>
-            </LinkButton>
+      <Container>
+        <div className={styles.top}>
+          <div className={styles.copy}>
+            <p className={styles.eyebrow}>Financiación para comercios</p>
+            <h1 className={styles.title}>Capital para impulsar tu actividad comercial</h1>
+            <p className={styles.subtitle}>
+              Evaluamos cada caso de forma individual para comerciantes, emprendedores y negocios de Zona Oeste.
+            </p>
+            <div className={styles.ctaRow}>
+              <LinkButton href={`#${SECTION_IDS.form}`} variant="primary">
+                Solicitar evaluación
+                <span className={styles.ctaArrow} aria-hidden="true">
+                  →
+                </span>
+              </LinkButton>
+            </div>
+            <p className={styles.disclaimer}>Enviar una solicitud no implica aprobación.</p>
           </div>
-          <p className={styles.disclaimer}>Enviar una solicitud no implica aprobación.</p>
-        </div>
-        <div className={styles.visual} aria-hidden="true">
-          <div className={styles.visualPanel}>
+
+          <div className={styles.visual} aria-hidden="true">
+            <span className={styles.visualLine} />
+            <p className={styles.visualText}>Evaluación individual para comercios y negocios.</p>
             <LogoMark className={styles.mark} />
           </div>
-          <p className={styles.visualCaption}>Atención en Zona Oeste</p>
+        </div>
+
+        <div className={styles.trustBand}>
+          {TRUST_ITEMS.map((item) => (
+            <div key={item} className={styles.trustItem}>
+              <span className={styles.trustMark} aria-hidden="true" />
+              <span>{item}</span>
+            </div>
+          ))}
         </div>
       </Container>
     </section>

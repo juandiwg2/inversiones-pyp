@@ -6,10 +6,9 @@ import styles from './HowItWorks.module.css'
 
 const STEPS = [
   'Completás la solicitud.',
-  'Guardamos la información.',
+  'Revisamos la información.',
   'Continuás por WhatsApp.',
-  'Revisamos el caso.',
-  'Te informamos si es posible avanzar.',
+  'Te contactamos para informarte si es posible avanzar.',
 ]
 
 /**
@@ -45,7 +44,7 @@ export function HowItWorks() {
   return (
     <section id={SECTION_IDS.howItWorks} className={styles.section}>
       <Container>
-        <SectionHeading eyebrow="Proceso" title="Cómo funciona" />
+        <SectionHeading eyebrow="Proceso" title="Cómo funciona" tone="onDark" />
         <ol className={styles.timeline}>
           {STEPS.map((step, index) => {
             const isActive = index < activeCount

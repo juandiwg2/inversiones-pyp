@@ -5,7 +5,6 @@ import { Faq } from '../components/sections/Faq'
 import { Hero } from '../components/sections/Hero'
 import { HowItWorks } from '../components/sections/HowItWorks'
 import { Requirements } from '../components/sections/Requirements'
-import { TrustSignals } from '../components/sections/TrustSignals'
 import { PrequalificationForm } from '../features/prequalification/PrequalificationForm'
 import { SECTION_IDS } from '../lib/sectionIds'
 import styles from './HomePage.module.css'
@@ -14,7 +13,6 @@ export function HomePage() {
   return (
     <>
       <Hero />
-      <TrustSignals />
       <Enfoque />
       <HowItWorks />
       <Requirements />
@@ -23,7 +21,7 @@ export function HomePage() {
           <SectionHeading
             eyebrow="Precalificación"
             title="Solicitar evaluación"
-            description="Completá estos datos y continuá por WhatsApp."
+            description="Completá tus datos y continuá por WhatsApp."
           />
           <PrequalificationForm />
         </Container>
