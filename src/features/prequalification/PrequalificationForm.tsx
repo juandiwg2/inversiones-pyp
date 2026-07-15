@@ -129,7 +129,13 @@ export function PrequalificationForm() {
           )}
         </FormField>
 
-        <FormField id="monthlyIncome" label="Ingresos aproximados" required error={errors.monthlyIncome}>
+        <FormField
+          id="monthlyIncome"
+          label="Ingresos diarios aproximados"
+          required
+          error={errors.monthlyIncome}
+          hint="Ingresá un valor aproximado de tus ingresos por día."
+        >
           {(describedBy) => (
             <input
               id="monthlyIncome"

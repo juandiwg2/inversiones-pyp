@@ -14,8 +14,8 @@
   display: flex;
   gap: var(--space-5);
   padding-bottom: var(--space-6);
-  opacity: 0.45;
-  transform: translateY(10px);
+  opacity: calc(0.45 + 0.55 * var(--process-progress, 0));
+  transform: translateY(calc(10px * (1 - var(--process-progress, 0))));
 }
 
 .step:last-child {
@@ -41,8 +41,8 @@
 .dotFill {
   position: absolute;
   inset: 0;
-  background: var(--color-petrol-700);
-  opacity: var(--step-progress, 0);
+  background: var(--color-petrol-600);
+  opacity: var(--process-progress, 0);
 }
 
 .line {
@@ -58,8 +58,8 @@
 .lineFill {
   position: absolute;
   inset: 0;
-  background: var(--color-petrol-700);
-  transform: scaleY(var(--step-progress, 0));
+  background: var(--color-petrol-600);
+  transform: scaleY(var(--process-progress, 0));
   transform-origin: top;
 }
 
@@ -86,19 +86,14 @@
 
 @media (prefers-reduced-motion: no-preference) {
   .step {
-    transition: opacity 400ms ease-out, transform 400ms ease-out;
+    transition: opacity 120ms linear, transform 120ms linear;
   }
 
   .dotFill {
-    transition: opacity 300ms ease-out;
+    transition: opacity 120ms linear;
   }
 
   .lineFill {
-    transition: transform 500ms ease-out;
+    transition: transform 120ms linear;
   }
-}
-
-.stepActive {
-  opacity: 1;
-  transform: translateY(0);
 }
