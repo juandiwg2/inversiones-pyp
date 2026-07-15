@@ -86,21 +86,19 @@
   margin-left: calc(20px + var(--space-3));
 }
 
+.dataUseNotice {
+  font-size: var(--text-xs);
+  line-height: 1.45;
+  font-weight: var(--weight-body);
+  color: var(--color-text-secondary);
+  text-decoration: none;
+  width: 100%;
+}
+
 .formFooter {
   display: flex;
   flex-direction: column;
   gap: var(--space-3);
-}
-
-.privacyLink {
-  color: var(--color-petrol-700);
-  font-weight: var(--weight-title);
-}
-
-.disclaimer {
-  font-size: var(--text-xs);
-  color: var(--color-text-secondary);
-  text-align: center;
 }
 
 .readyPanel {

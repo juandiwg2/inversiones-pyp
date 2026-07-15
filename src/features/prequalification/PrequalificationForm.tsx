@@ -1,5 +1,4 @@
 import { useEffect, useState, type FormEvent } from 'react'
-import { Link } from 'react-router-dom'
 import { Button, LinkButton } from '../../components/ui/Button'
 import { WhatsAppIcon } from '../../components/ui/icons'
 import { BUSINESS_RULES } from '../../config/business-rules'
@@ -264,17 +263,15 @@ export function PrequalificationForm() {
         ) : null}
       </div>
 
+      <p className={styles.dataUseNotice}>
+        Los datos proporcionados serán utilizados únicamente para analizar la solicitud y continuar el contacto por
+        WhatsApp.
+      </p>
+
       <div className={styles.formFooter}>
         <Button type="submit" variant="primary" fullWidthOnMobile icon={<WhatsAppIcon />}>
           Solicitar evaluación
         </Button>
-        <p className={styles.disclaimer}>
-          {LEGAL_TEXT.dataUseNotice}{' '}
-          <Link to="/politica-de-privacidad" className={styles.privacyLink}>
-            Política de Privacidad
-          </Link>
-          .
-        </p>
       </div>
     </form>
   )
