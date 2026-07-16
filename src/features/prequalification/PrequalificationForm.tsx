@@ -1,4 +1,4 @@
-import { useEffect, useState, type FormEvent } from 'react'
+import { useEffect, useRef, useState, type FormEvent } from 'react'
 import { Button, LinkButton } from '../../components/ui/Button'
 import { WhatsAppIcon } from '../../components/ui/icons'
 import { BUSINESS_RULES } from '../../config/business-rules'
@@ -7,6 +7,7 @@ import { LEGAL_TEXT } from '../../config/legal'
 import { ALLOWED_LOCALITIES, OUT_OF_ZONE_VALUE, type LocalityOption } from '../../config/locations'
 import { buildWhatsappUrl } from '../../config/whatsapp'
 import { trackEvent } from '../../lib/analytics'
+import { trackMetaPixelEvent } from '../../lib/metaPixel'
 import { captureAndPersistUtm } from '../../lib/utm'
 import { calculateAge } from '../../schemas/prequalification.schema'
 import { FormField } from './formFields/FormField'
@@ -25,9 +26,31 @@ export function PrequalificationForm() {
   const [values, setValues] = useState<SimplifiedRawValues>(INITIAL_SIMPLIFIED_VALUES)
   const [errors, setErrors] = useState<SimplifiedFieldErrors>({})
   const [whatsappUrl, setWhatsappUrl] = useState<string | null>(null)
+  const formRef = useRef<HTMLFormElement | null>(null)
+  const viewContentFiredRef = useRef(false)
 
   useEffect(() => {
     captureAndPersistUtm()
+  }, [])
+
+  useEffect(() => {
+    const el = formRef.current
+    if (!el) return
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (viewContentFiredRef.current) return
+        if (entries.some((entry) => entry.isIntersecting)) {
+          viewContentFiredRef.current = true
+          trackMetaPixelEvent('ViewContent')
+          observer.disconnect()
+        }
+      },
+      { threshold: 0.2 },
+    )
+
+    observer.observe(el)
+    return () => observer.disconnect()
   }, [])
 
   function updateField<K extends keyof SimplifiedRawValues>(field: K, value: SimplifiedRawValues[K]) {
@@ -53,6 +76,7 @@ export function PrequalificationForm() {
 
     setErrors({})
     trackEvent('prequalification_form_submit')
+    trackMetaPixelEvent('Lead')
 
     const modalityLabel =
       MODALITY_OPTIONS.find((option) => option.value === parsed.data.preferredModality)?.label ??
@@ -74,6 +98,7 @@ export function PrequalificationForm() {
 
     setWhatsappUrl(url)
     trackEvent('prequalification_whatsapp_redirect')
+    trackMetaPixelEvent('Contact')
     window.open(url, '_blank', 'noopener,noreferrer')
   }
 
@@ -97,7 +122,7 @@ export function PrequalificationForm() {
   }
 
   return (
-    <form className={styles.form} onSubmit={handleSubmit} noValidate>
+    <form ref={formRef} className={styles.form} onSubmit={handleSubmit} noValidate>
       <div className={styles.grid}>
         <FormField id="fullName" label="Nombre completo" required error={errors.fullName}>
           {(describedBy) => (
